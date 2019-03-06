@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Login from './Auth/Login'
 import Register from './Auth/Register'
 import { auth } from './Firebase/Firebase'
-import { Switch, Route } from 'react-router-dom'
+import { Switch, Route, withRouter } from 'react-router-dom'
 
 
 import { doGetUser } from './Firebase/Users'
@@ -10,7 +10,7 @@ import Home from './Components/Home/Home';
 import Movie from './Components/Movie/Movie';
 
 import "semantic-ui-css/semantic.min.css";
-import Navigation from './Components/Nav/Nav';
+import Nav from './Components/Nav/Nav';
 import Calendar from './Components/Calendar/Calendar'
 
 class App extends Component {
@@ -26,7 +26,7 @@ class App extends Component {
     )
   }
 
-  doLogOut() {
+  doLogOut = () => {
     auth.signOut()
     this.setState({
       currentUser: {}
@@ -37,8 +37,10 @@ class App extends Component {
     console.log(this.state.currentUser)
     return (
       <div>
-        <Navigation
+        <Nav
           doSetCurrentUser={(user) => this.setState({ currentUser: user })}
+          currentUser={this.state.currentUser}
+          doLogOut={this.doLogOut}
         />
         <Switch>
           <Route exact path="/" component={() => <Home doLogOut={this.doLogout} />} />
@@ -53,4 +55,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default withRouter(App);

@@ -1,0 +1,57 @@
+.nav-container {
+    background-color: rgb(0, 0, 0); 
+    margin-top: 0rem; 
+    padding: .1rem; 
+    width: 100%; 
+    position: absolute;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    z-index: 10000;
+}
+
+a {
+    text-decoration: none; 
+    margin: 0;
+}
+
+.nav-container a:visited {
+    color: #fff; 
+}
+
+.logo-nav {
+    height: 2.3rem;
+    width: 3rem;
+    display: flex;
+    padding-left: 1rem;
+}
+
+.nav-flex {
+    display: flex; 
+    width:100%;
+    flex-direction: row-reverse;
+}
+
+.nav-list {
+    color: #fff; 
+    list-style-type: none;
+}
+
+#list1 {
+    margin-right: 1rem;    
+}
+
+#list2 {
+    margin-right: 1rem; 
+}
+
+#list3 {
+    margin-right: 1rem; 
+}
+#list4 {
+    margin-right: 1rem; 
+}
+
+.ternary-nav {
+    display: flex; 
+}

@@ -6,6 +6,8 @@ import Grid from '../../Components/Grid/Grid';
 import MovieThumb from '../MovieThumb/MovieThumb';
 import LoadMoreBtn from '../LoadMore/LoadMore';
 import Spinner from '../Spinner/Spinner';
+
+import InfiniteScroll from 'react-infinite-scroller';
 import './Home.css';
 
 class Home extends Component {
@@ -116,8 +118,6 @@ render() {
         {(currentPage <= totalPages && !loading) ? <LoadMoreBtn text="Load More" onClick={this.loadMoreItems} /> : null }
 
 
-
-            
 
 
 
