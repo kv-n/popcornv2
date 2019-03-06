@@ -5,7 +5,7 @@ import MovieInfo from '../MovieInfo/MovieInfo';
 
 import Grid from '../Grid/Grid';
 import Actor from '../Actor/Actor';
-// import Spinner from '../Spinner/Spinner';
+import Spinner from '../Spinner/Spinner';
 import './Movie.css';
 import { database } from 'firebase';
 
@@ -32,34 +32,32 @@ class Movie extends Component {
     }
   }
 
-  fetchItems = (endpoint) => {
+
+  fetchItems = async endpoint => {
     // ES6 destructuring the props
     const { movieId } = this.props.match.params;
-
-    fetch(endpoint)
-    .then(result => result.json())
-    .then(result => {
-
+    try {
+      const result = await (await fetch(endpoint)).json()
       if (result.status_code) {
         // If we don't find any movie
         this.setState({ loading: false });
       } else {
-        this.setState({ movie: result }, () => {
+        this.setState({ movie: result })
+        const creditsEndpoint = `${API_URL}movie/${movieId}/credits?api_key=${API_KEY}`;
+        const creditsResult = await (await fetch(creditsEndpoint)).json()
+        const directors = creditsResult.crew.filter((member) => member.job === "Director");
+        this.setState({
           // ... then fetch actors in the setState callback function
-          let endpoint = `${API_URL}movie/${movieId}/credits?api_key=${API_KEY}`;
-          fetch(endpoint)
-          .then(result => result.json())
-            this.setState({
-              actors: result.cast,
-              loading: false
-            }, () => {
-              localStorage.setItem(`${movieId}`, JSON.stringify(this.state));
-            })
+          actors: creditsResult.cast,
+          directors,
+          loading: false
+        }, () => {
+          localStorage.setItem(`${movieId}`, JSON.stringify(this.state));
         })
       }
-    })
-
-    .catch(error => console.error('Error:', error))
+    } catch (err) {
+      console.log(err)
+    }
   }
 
   render() {
@@ -70,22 +68,22 @@ class Movie extends Component {
     return (
       <div className="rmdb-movie">
         {movie ?
-        <div>
-          {/* <Navigation movie={movieName} /> */}
-          <MovieInfo movie={movie} directors={directors} />
-        </div>
-        : null }
+          <div>
+            {/* <Navigation movie={movieName} /> */}
+            <MovieInfo movie={movie} directors={directors} />
+          </div>
+          : null}
         {actors ?
-        <div className="rmdb-movie-grid">
-          <Grid header={'Actors'}>
-            {actors.map( (element, i) => (
-              i < 4 ? <Actor key={i} actor={element} /> : "" 
-            ))}
-          </Grid>
-        </div>
-        : null }
-        {!actors && !loading ? <h1>No movie found</h1> : null }
-        {/* {loading ? <Spinner /> : null} */}
+          <div className="rmdb-movie-grid">
+            <Grid header={'Actors'}>
+              {actors.map((element, i) => (
+                i < 4 ? <Actor key={i} actor={element} /> : ""
+              ))}
+            </Grid>
+          </div>
+          : null}
+        {!actors && !loading ? <h1>No movie found</h1> : null}
+        {loading ? <Spinner /> : null}
       </div>
     )
   }
