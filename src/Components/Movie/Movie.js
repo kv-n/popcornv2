@@ -2,12 +2,16 @@ import React, { Component } from 'react';
 import { API_URL, API_KEY } from '../../config';
 // import Navigation from '../Navigation/Navigation';
 import MovieInfo from '../MovieInfo/MovieInfo';
+import { withRouter } from 'react-router-dom'
 
 import Grid from '../Grid/Grid';
 import Actor from '../Actor/Actor';
 import Spinner from '../Spinner/Spinner';
 import './Movie.css';
 import { database } from 'firebase';
+
+
+import { doAddMovieToWatchList, doGetAllUserMovies } from '../../Firebase/Users'
 
 class Movie extends Component {
   state = {
@@ -30,6 +34,15 @@ class Movie extends Component {
       let endpoint = `${API_URL}movie/${movieId}?api_key=${API_KEY}&language=en-US`;
       this.fetchItems(endpoint);
     }
+  }
+
+  toWatchList = () => {
+    const movie = {
+      id: this.state.movie.id,
+      title: this.state.movie.original_title,
+      toWatch: true
+    }
+    doAddMovieToWatchList(this.props.currentUser.id, movie)
   }
 
 
@@ -67,10 +80,15 @@ class Movie extends Component {
 
     return (
       <div className="rmdb-movie">
+
+        {/* make it so it toggles and users cant add more to it */}
+        <button onClick={this.toWatchList}>watch</button>
+
+
         {movie ?
           <div>
             {/* <Navigation movie={movieName} /> */}
-            <MovieInfo movie={movie} directors={directors} />
+            <MovieInfo movie={movie} />
           </div>
           : null}
         {actors ?
@@ -89,4 +107,4 @@ class Movie extends Component {
   }
 }
 
-export default Movie;
+export default withRouter(Movie);

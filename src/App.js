@@ -12,6 +12,7 @@ import Movie from './Components/Movie/Movie';
 import "semantic-ui-css/semantic.min.css";
 import Nav from './Components/Nav/Nav';
 import Calendar from './Components/Calendar/Calendar'
+import UserProfile from './Components/UserProfile/UserProfile'
 
 class App extends Component {
   state = {
@@ -22,7 +23,7 @@ class App extends Component {
     auth.onAuthStateChanged(authUser =>
       authUser &&
       doGetUser(authUser.uid)
-        .then(currentUser => this.setState({ currentUser: currentUser.data() }))
+        .then(currentUser => this.setState({ currentUser: Object.assign(currentUser.data(), {id: currentUser.id})}))
     )
   }
 
@@ -47,7 +48,8 @@ class App extends Component {
           <Route path="/login" component={() => <Login doSetCurrentUser={(user) => this.setState({ currentUser: user })} />} />
           <Route path='/register' component={() => <Register/>} />
           <Route path='/calendar' component={()=> <Calendar/>} />
-          <Route path="/:movieId" component={Movie} exact />
+          <Route path='/profile/:id' component={() => <UserProfile />}/>
+          <Route path="/movies/:movieId" component={() => <Movie currentUser={this.state.currentUser}/>} exact />
         </Switch>
       </div>
     );

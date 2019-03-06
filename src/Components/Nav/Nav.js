@@ -23,6 +23,7 @@ class Nav extends Component {
                                 <div className="ternary-nav">
                                     <li id="list1" className="nav-list"><Link to='/'>Movies</Link></li>
                                     <li id="list2" className="nav-list"><Link to='/calendar'>My Calendar</Link></li>
+                                    <li id="list2" className="nav-list"><Link to={`/profile/${this.props.currentUser.id}`}>My Profile</Link></li>
                                     <li onClick={() => this.props.doLogOut()} id="list3" className="nav-list">Logout</li>
                                 </div>
                             )

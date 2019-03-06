@@ -1,9 +1,9 @@
 .nav-container {
-    background-color: rgb(0, 0, 0); 
+    background-color: #353535; 
     margin-top: 0rem; 
     padding: .1rem; 
     width: 100%; 
-    position: absolute;
+    position: relative;
     display: flex;
     flex-direction: row;
     align-items: center;
