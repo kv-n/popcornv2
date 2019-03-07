@@ -7,19 +7,3 @@
     margin: 0 auto;
     padding: 0 20px;
   }
-
-  .fa-film {
-    position: absolute;
-    bottom: 40px;
-    right: 40px;
-    color: dodgerblue;
-  }
-
-  .watch--button{
-    background: none;
-  }
-
-  .icon--button {
-    width: 10rem;
-    height: 10rem;
-  }

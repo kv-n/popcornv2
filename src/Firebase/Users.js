@@ -13,6 +13,26 @@ export const doGetUser = (id) =>
     .doc(id)
     .get()
 
+  
+export const doGetAllUsers = () =>
+    userRef
+    .get()
+
+
+
+// export const doGetFriendsList =(id) =>
+//   userRef
+//     .doc(id)
+//     .collection('friends')
+//     .get()
+
+  
+export const doAddFriend = (userId, friendData) =>
+  userRef
+    .doc(userId)
+    .collection('friends')
+    .add(friendData)
+
 export const doAddMovieToWatchList = (id, data) =>
   userRef
     .doc(id)
@@ -23,6 +43,12 @@ export const doGetAllUserMovies = (id) =>
   userRef
     .doc(id)
     .collection('movies')
+    .get()
+
+export const doGetAllFriends = (id) =>
+  userRef
+    .doc(id)
+    .collection('friends')
     .get()
 
 export const doDeleteMovie = (userId, movieId) => 

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom'
 // import LogOut from '../../LogOut/LogOut'
 import './Nav.css'
+import SideBar from '../Sidebar/Sidebar'
 
 
 class Nav extends Component {
@@ -20,6 +21,7 @@ class Nav extends Component {
                                     <li id="list1" className="nav-list"><Link to='/'>Movies</Link></li>
                                     <li id="list2" className="nav-list"><Link to='/calendar'>My Calendar</Link></li>
                                     <li id="list2" className="nav-list"><Link to={`/profile/${this.props.currentUser.id}`}>My Profile</Link></li>
+                                    <li id='list3' className="nav-list"><Link to='/all-users'>Find a Friend</Link></li>
                                     <li onClick={() => this.props.doLogOut()} id="list3" className="nav-list">Logout</li>
                                 </div>
                             )

@@ -7,7 +7,6 @@ import MovieThumb from '../MovieThumb/MovieThumb';
 import LoadMoreBtn from '../LoadMore/LoadMore';
 import Spinner from '../Spinner/Spinner';
 
-import InfiniteScroll from 'react-infinite-scroller';
 import './Home.css';
 
 class Home extends Component {

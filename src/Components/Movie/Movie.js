@@ -23,24 +23,36 @@ class Movie extends Component {
     movie: null,
     actors: null,
     directors: [],
-    loading: false,
     userMovies: [],
-    movies: []
+    movies: [],
+    loading: true,
+    isClicked: true
   }
 
+  isClicked = () => 
+  this.setState({ isClicked: this.state.userMovies.some( m => m.id === this.state.movie.id), loading: false })
+ 
   componentDidMount() {
     // ES6 destructuring the props
     const { movieId } = this.props.match.params;
 
-    if (localStorage.getItem(`${movieId}`)) {
-      let state = JSON.parse(localStorage.getItem(`${movieId}`))
-      this.setState({ ...state })
-    } else {
-      this.setState({ loading: true })
+    // if (localStorage.getItem(`${movieId}`)) {
+    //   let state = JSON.parse(localStorage.getItem(`${movieId}`))
+    //   this.setState({ ...state })
+    // } else {
+      // this.setState({ loading: true })
       // First fetch the movie ...
       let endpoint = `${API_URL}movie/${movieId}?api_key=${API_KEY}&language=en-US`;
       this.fetchItems(endpoint);
-    }
+    // }
+
+    this.props.currentUser.id && doGetAllUserMovies(this.props.currentUser.id)
+      .then(snapShot => {this.setState({ 
+        userMovies: snapShot.docs.map(m => Object.assign(m.data(), {uid: m.id})),
+      })
+      this.isClicked()
+    })
+
     // Get User's Movies
     // doGetAllUserMovies(this.props.currentUser.id)
     // setState to update userMovies
@@ -64,7 +76,7 @@ class Movie extends Component {
       toWatch: true
     }
     doAddMovieToWatchList(this.props.currentUser.id, movie)
-    console.log(this.props.currentUser.id)
+    this.setState({isClicked: true})
   }
 
 
@@ -75,7 +87,7 @@ class Movie extends Component {
       const result = await (await fetch(endpoint)).json()
       if (result.status_code) {
         // If we don't find any movie
-        this.setState({ loading: false });
+        // this.setState({ loading: false });
       } else {
         this.setState({ movie: result })
         const creditsEndpoint = `${API_URL}movie/${movieId}/credits?api_key=${API_KEY}`;
@@ -85,7 +97,7 @@ class Movie extends Component {
           // ... then fetch actors in the setState callback function
           actors: creditsResult.cast,
           directors,
-          loading: false
+          // loading: false
         }, () => {
           localStorage.setItem(`${movieId}`, JSON.stringify(this.state));
         })
@@ -98,32 +110,38 @@ class Movie extends Component {
   render() {
     // ES6 Destructuring the props and state
     const { movieName } = this.props.location;
-    const { movie, directors, actors, loading } = this.state;
+    const { movie, directors, actors, loading, isClicked } = this.state;
+
+    console.log(this.state.loading)
+
+    
 
     return (
-      <div className="rmdb-movie">
-
-        {/* make it so it toggles and users cant add more to it */}
-        <div className="ui buttons">
-          <button onClick={this.toWatchList} className="ui positive button">Save</button>
-        </div>
-
-
-        {movie ? <div>{/* <Navigation movie={movieName} /> */} <MovieInfo movie={movie} /></div>
-          : null}
-        {actors ?
-          <div className="rmdb-movie-grid">
-            <Grid header={'Actors'}>
-              {actors.map((element, i) => (
-                i < 8 ? <Actor key={i} actor={element} /> : ""
-              ))}
-            </Grid>
-          </div>
-          : null}
-        {!actors && !loading ? <h1>No movie found</h1> : null}
-        {loading ? <Spinner /> : null}
+      <div>
+        {
+          !loading && 
+            <div className="rmdb-movie">
+              {/* make it so it toggles and users cant add more to it */}
+              {movie ? <div>{/* <Navigation movie={movieName} /> */} <MovieInfo isClicked={isClicked}toWatchList={this.toWatchList} movie={movie} /></div>
+                : null}
+              {actors ?
+                <div className="rmdb-movie-grid">
+                  <Grid header={'Actors'}>
+                    {actors.map((element, i) => (
+                      i < 8 ? <Actor key={i} actor={element} /> : ""
+                    ))}
+                  </Grid>
+                </div>
+                : null}
+              {!actors && !loading ? <h1>No movie found</h1> : null}
+              {loading ? <Spinner /> : null}
+            </div>
+        }
+        {/* <MovieInfo toWatchList={this.toWatchList}/> */}
       </div>
+
     )
+
   }
 }
 

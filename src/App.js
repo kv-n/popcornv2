@@ -13,6 +13,7 @@ import "semantic-ui-css/semantic.min.css";
 import Nav from './Components/Nav/Nav';
 import Calendar from './Components/Calendar/Calendar'
 import UserProfile from './Components/UserProfile/UserProfile'
+import AllUsers from './Components/AllUsers/AllUsers'
 
 class App extends Component {
   state = {
@@ -48,8 +49,9 @@ class App extends Component {
           <Route path="/login" component={() => <Login doSetCurrentUser={(user) => this.setState({ currentUser: user })} />} />
           <Route path='/register' component={() => <Register/>} />
           <Route path='/calendar' component={()=> <Calendar/>} />
-          <Route path='/profile/:id' component={() => <UserProfile />}/>
+          <Route path='/profile/:id' component={() => <UserProfile currentUser={this.state.currentUser}/>}/>
           <Route path="/movies/:movieId" component={() => <Movie currentUser={this.state.currentUser}/>} exact />
+          <Route path="/all-users" component={() => <AllUsers currentUser={this.state.currentUser}/>} exact />
         </Switch>
       </div>
     );
