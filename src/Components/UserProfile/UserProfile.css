@@ -1,3 +1,11 @@
 .movieToSee {
     padding: 1rem;
 }
+
+.profile--movies {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-column-gap: 40px;
+    grid-row-gap: 40px;
+    padding: 1rem;
+}

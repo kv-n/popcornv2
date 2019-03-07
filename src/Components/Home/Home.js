@@ -20,6 +20,18 @@ class Home extends Component {
     searchTerm: ''
   }
 
+  isBottom(el) {
+    return el.getBoundingClientRect().bottom <= window.innerHeight;
+  }
+
+  trackScrolling = () => {
+    const wrappedElement = document.getElementsByClassName('rmdb-home')[0];
+    if (this.isBottom(wrappedElement)) {
+      this.loadMoreItems()
+      // document.removeEventListener('scroll', this.trackScrolling);
+    }
+  };
+
   componentDidMount() {
     if (sessionStorage.getItem('HomeState')) {
       let state = JSON.parse(sessionStorage.getItem('HomeState'))
@@ -29,7 +41,13 @@ class Home extends Component {
       const endpoint = `${API_URL}movie/popular?api_key=${API_KEY}&language=en-US&page=1`;
       this.fetchItems(endpoint);
     }
+    document.addEventListener('scroll', this.trackScrolling);
   }
+
+  componentWillUnmount() {
+    document.removeEventListener('scroll', this.trackScrolling);
+  }
+  
   
 
   searchItems = (searchTerm) => {

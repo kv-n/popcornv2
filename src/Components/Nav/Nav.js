@@ -4,10 +4,6 @@ import { Link } from 'react-router-dom'
 import './Nav.css'
 
 
-
-
-
-
 class Nav extends Component {
     render() {
         console.log(this.props.currentUser)
