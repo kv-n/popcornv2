@@ -36,6 +36,7 @@
   background: transparent;
   height: 40px;
   color: #fff;
+  width: 90%;
 }
 
 .rmdb-searchbar-input:focus {

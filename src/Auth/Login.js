@@ -42,7 +42,7 @@ class Login extends Component {
               //if multiple docs.map(d => d.data())
               // snapShot.docs.map(d => console.log(Object.assign(d.data(),{id:d.id})))
               this.props.doSetCurrentUser(snapShot.data())
-              return this.props.history.push('/')
+              return this.props.history.push('/movies')
             })
         })
         .catch(err => {

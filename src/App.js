@@ -33,6 +33,7 @@ class App extends Component {
     this.setState({
       currentUser: {}
     })
+    this.props.history.push('/movies')
   }
 
   render() {
@@ -45,7 +46,7 @@ class App extends Component {
           doLogOut={this.doLogOut}
         />
         <Switch>
-          <Route exact path="/" component={() => <Home doLogOut={this.doLogout} />} />
+          <Route exact path="/movies" component={() => <Home doLogOut={this.doLogout} />} />
           <Route path="/login" component={() => <Login doSetCurrentUser={(user) => this.setState({ currentUser: user })} />} />
           <Route path='/register' component={() => <Register/>} />
           <Route path='/calendar' component={()=> <Calendar/>} />

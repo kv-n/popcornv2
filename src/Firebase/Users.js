@@ -33,6 +33,14 @@ export const doAddFriend = (userId, friendData) =>
     .collection('friends')
     .add(friendData)
 
+export const doDeleteFriend = (userId, friendData) => 
+userRef
+  //find the user Id, go into the sub collection of movies, find the movieId and then delete
+  .doc(userId)
+  .collection('friends')
+  .doc(friendData)
+  .delete()
+
 export const doAddMovieToWatchList = (id, data) =>
   userRef
     .doc(id)

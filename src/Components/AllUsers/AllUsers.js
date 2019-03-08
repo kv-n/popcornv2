@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { doGetAllUsers, doAddFriend } from '../../Firebase/Users'
 import { withRouter } from 'react-router-dom'
+import ProfileCard from '../ProfileCard/ProfileCard'
 
 
 class AllUsers extends Component {
@@ -17,7 +18,7 @@ class AllUsers extends Component {
     }
 
     toFriendsList = (friendId, friendName) => {
-        doAddFriend( this.props.currentUser.id,{id: friendId, username: friendName})
+        doAddFriend( this.props.currentUser.id ,{id: friendId, username: friendName})
       }
 
       
@@ -36,7 +37,8 @@ class AllUsers extends Component {
                 <h1>Find a Friend</h1>
                 {this.state.users.map((user, i) => (
                                 <div>
-                                <button onClick={() => this.toFriendsList(user.uid, user.username)}>{user.username}</button>
+                                <ProfileCard toFriendsList={this.toFriendsList} friend={user} currentUser={this.props.currentUser}/>
+                                {/* <button onClick={() => this.toFriendsList(user.uid, user.username)}>{user.username}</button> */}
                                 </div>
                             ))}
             </div>

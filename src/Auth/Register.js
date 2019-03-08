@@ -11,7 +11,7 @@ import {
   Message,
   Icon
 } from "semantic-ui-react";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 
 class Register extends Component {
   state = {
@@ -86,7 +86,8 @@ class Register extends Component {
           console.log(createdUser.user)
           console.log(createdUser.user.uid, ' this is the data')
           doAddUser(createdUser.user.uid, { username: this.state.username })
-          return this.props.history.push('/')
+          // this.props.doSetCurrentUser(createdUser)
+          return this.props.history.push('/movies')
         })
 
         })
@@ -200,5 +201,5 @@ class Register extends Component {
   }
 }
 
-export default Register;
+export default withRouter(Register);
 

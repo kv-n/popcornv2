@@ -6,6 +6,12 @@
     transition: all 0.3s;
     box-sizing: border-box;
   }
+
+.movie-image{
+  width: 100%;
+  height: auto;
+}
+  
   
   .clickable {
     cursor: pointer;
@@ -13,4 +19,8 @@
   
   .clickable:hover {
     opacity: 0.8;
+  }
+
+  .rmdb-moviethumb{
+    width:300px;
   }

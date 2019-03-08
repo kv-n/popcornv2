@@ -1,31 +1,56 @@
-import React from 'react'
-import './Modal.css'
+import React, { Component } from 'react'
+import { Button, Header, Icon, Modal } from 'semantic-ui-react'
 
+export default class ModalExampleControlled extends Component {
+  state = { modalOpen: false }
 
-const Modal = (props) => {
+  handleOpen = () => this.setState({ modalOpen: true })
+
+  handleClose = () => {
+    if (this.props.movieId){
+      this.props.deleteMovie(this.props.movieId)
+    } else if (this.props.friendId){
+      this.props.deleteFriend(this.props.friendId)
+    }
+    this.setState({ modalOpen: false })
+  }
+
+  modalHandler = () =>{
+    this.setState({
+      modalOpen: false
+    })
+  }
+
+  render() {
+    console.log(this.props)
     return (
-        <div>
-            <div className="modal-wrapper"
-                style={{
-                    transform: props.show ? 'translateY(0vh)' : 'translateY(-100vh)',
-                    opacity: props.show ? '1' : '0'
-                }}>
-                <div className="modal-header">
-                    <h3>Modal Header</h3>
-                    <span className="close-modal-btn" onClick={props.close}>×</span>
-                </div>
-                <div className="modal-body">
-                    <p>
-                        Do You Want to Delete this?
-                    </p>
-                </div>
-                <div className="modal-footer">
-                    <button className="btn-cancel" onClick={props.close}>CLOSE</button>
-                    <button className="btn-continue">CONTINUE</button>
-                </div>
-            </div>
-        </div>
-    )
-}
+      <Modal
+        trigger={<Button className={this.props.isUser ? 'show' : 'hide'} onClick={this.handleOpen}>Delete</Button>}
+        open={this.state.modalOpen}
+        onClose={this.modalHandler}
+        close={!this.state.ModalOpen}
+        basic
+        size='small'
+      >
+        <Header icon='browser' content='Popcorn' />
+        <Modal.Content>
+          {this.props.movieId
+          ?(
+            <h3>Delete This Movie From Your Must Watch List?</h3>
+          )
+          :(
+            <h3>Delete this MF?</h3>
+          )
 
-export default Modal
+          }
+         
+        </Modal.Content>
+        <Modal.Actions>
+          <Button onClick={this.handleClose} inverted color='green' >
+            <Icon name='checkmark' /> Yes
+          </Button>
+        </Modal.Actions>
+      </Modal>
+    )
+  }
+}
