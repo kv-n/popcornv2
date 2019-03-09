@@ -5,6 +5,7 @@ import './UserProfile.css'
 import MovieThumb from '../MovieThumb/MovieThumb'
 import { IMAGE_BASE_URL, POSTER_SIZE, BACKDROP_SIZE } from '../../config';
 import Modal from '../Modal/Modal'
+import FriendsCard from '../FriendsCard/FriendsCard'
 import './UserProfile.css'
 
 
@@ -58,33 +59,30 @@ class UserProfile extends Component {
                     <div className="grid-container">
                         <div className="item1">
                             <h2 header={'Want to See'}>Movies You Want To See:</h2>
-                            {this.state.movies.map((element, i) => (
-                                <div className="profile-movies" key={i}>
-                                    <MovieThumb
-                                        key={i}
-                                        clickable={true}
-                                        image={element.picture ? `${IMAGE_BASE_URL}${POSTER_SIZE}${element.picture}` : './images/no_image.jpg'}
-                                        movieId={element.id}
-                                        movieName={element.original_title}
-                                    />
-                                    <Modal isUser={isUser}  deleteMovie={this.deleteMovie} movieId={element.uid} />
-                                </div>
-                            ))}
+                            <div className="movie-container">
+                                {this.state.movies.map((element, i) => (
+                                    <div className="profile-movies" key={i}>
+                                        <MovieThumb
+                                            key={i}
+                                            clickable={true}
+                                            image={element.picture ? `${IMAGE_BASE_URL}${POSTER_SIZE}${element.picture}` : './images/no_image.jpg'}
+                                            movieId={element.id}
+                                            movieName={element.original_title}
+                                        />
+                                        <Modal isUser={isUser}  deleteMovie={this.deleteMovie} movieId={element.uid} />
+                                    </div>
+                                ))}
+                            </div>
                         </div>
 
                         <div className="item2">
                             <h2>Friends</h2>
                             {this.state.friends.map((f, i) => (
-                                <div key={i}>
-                                    <Link to={`/profile/${f.id}`}>{f.username}</Link>
-                                    {this.props.currentUser.id !== f.id
-                                    ? (
-                                        <Modal deleteFriend={this.deleteFriend} friendId={f.uid} />
-                                    )
-                                    :(
-                                        <div/>
-                                    )
-                                    }
+                                <div className="friends-list" key={i}>
+                                    {/* <Link to={`/profile/${f.id}`}>{f.username}</Link> */}
+                                    <FriendsCard isUser={isUser} friend={f} deleteFriend={this.deleteFriend} friendId={f.uid}/>
+                                        {/* <Modal isUser={isUser} deleteFriend={this.deleteFriend} friendId={f.uid} /> */}
+                                  
                                 </div>
                             ))}
                         </div>

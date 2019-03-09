@@ -8,7 +8,7 @@
   }
 
 .movie-image{
-  width: 100%;
+  width:500px;
   height: auto;
 }
   
@@ -21,6 +21,6 @@
     opacity: 0.8;
   }
 
-  .rmdb-moviethumb{
-    width:300px;
-  }
+  /* .rmdb-moviethumb{
+    width:px;
+  } */

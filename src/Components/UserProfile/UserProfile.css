@@ -44,7 +44,6 @@
   background-color: rgba(0, 0, 0, 0.829);
   text-align: center;
   padding: 20px 0;
-  font-size: 30px;
 }
 
 .grid-container{
@@ -53,19 +52,38 @@
 }
 
 .item1{
-    flex: 0 0 80%;
+    flex: 0 0 75%;
     display:flex;
     flex-direction: column;
 }
 
 .profile-movies{
     display:flex;
-    flex-wrap: wrap;
+    /* flex-direction: column; */
     width: 300px;
+    height: auto;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 5px;
+}
+
+.movie-container{
+    display:flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
 }
 
 .item2{
     flex: 1;
+    display:flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    align-items: center;
+}
+
+.friends-list{
+    margin:0;
 }
 
 .show {
