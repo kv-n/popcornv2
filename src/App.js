@@ -21,10 +21,10 @@ class App extends Component {
   }
 
   componentDidMount() {
-    auth.onAuthStateChanged(authUser =>
+    auth.onAuthStateChanged (authUser =>
       authUser &&
-      doGetUser(authUser.uid)
-        .then(currentUser => this.setState({ currentUser: Object.assign(currentUser.data(), {id: currentUser.id})}))
+      doGetUser (authUser.uid)
+        .then(currentUser =>this.setState({ currentUser: Object.assign({}, currentUser.data(), {id: currentUser.id})}))
     )
   }
 
@@ -37,7 +37,6 @@ class App extends Component {
   }
 
   render() {
-    console.log(this.state.currentUser)
     return (
       <div>
         <Nav

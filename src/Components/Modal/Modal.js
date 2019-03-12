@@ -7,22 +7,21 @@ export default class ModalExampleControlled extends Component {
   handleOpen = () => this.setState({ modalOpen: true })
 
   handleClose = () => {
-    if (this.props.movieId){
+    if (this.props.movieId) {
       this.props.deleteMovie(this.props.movieId)
-    } else if (this.props.friendId){
+    } else if (this.props.friendId) {
       this.props.deleteFriend(this.props.friendId)
     }
     this.setState({ modalOpen: false })
   }
 
-  modalHandler = () =>{
+  modalHandler = () => {
     this.setState({
       modalOpen: false
     })
   }
 
   render() {
-    console.log(this.props)
     return (
       <Modal
         trigger={<Button className={this.props.isUser ? 'show' : 'hide'} onClick={this.handleOpen}>Delete</Button>}
@@ -35,15 +34,15 @@ export default class ModalExampleControlled extends Component {
         <Header icon='browser' content='Popcorn' />
         <Modal.Content>
           {this.props.movieId
-          ?(
-            <h3>Delete This Movie From Your Must Watch List?</h3>
-          )
-          :(
-            <h3>Delete this MF?</h3>
-          )
+            ? (
+              <h3>Delete This Movie From Your Must Watch List?</h3>
+            )
+            : (
+              <h3>What?! Why?! Did they do something wrong?</h3>
+            )
 
           }
-         
+
         </Modal.Content>
         <Modal.Actions>
           <Button onClick={this.handleClose} inverted color='green' >

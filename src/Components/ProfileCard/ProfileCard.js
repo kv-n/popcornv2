@@ -4,18 +4,29 @@ import './ProfileCard.css'
 
 class ProfileCard extends Component {
 
-  handleClick = () => {
+  componentDidMount() {
+    if (this.props.currentUser.id === this.props.friend.uid) {
+      console.log('user', this.props.currentUser.id, 'friend', this.props.friend.uid);
+      console.log(true);
+    }
+    
+  }
+
+  handleClick = (event) => {
     const { uid, username } = this.props.friend
     this.props.toFriendsList(uid, username)
+    event.target.classList.add('gray')
+    event.target.classList.remove('green')
+    event.target.setAttribute("disabled", "disabled")
   }
 
   render(){
     const { username } = this.props.friend
     return(
-      <div className='profile--card'>
+    <div className='profile--card'>
     <Card>
       <Card.Content>
-        <Image floated='right' size='mini' src='/images/avatar/large/steve.jpg' />
+        <Image floated='right' size='mini' src='' />
         <Card.Header>{username}</Card.Header>
         {/* <Card.Meta></Card.Meta> */}
         <Card.Description>

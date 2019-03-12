@@ -6,13 +6,9 @@ import './Nav.css'
 
 class Nav extends Component {
     render() {
-        console.log(this.props.currentUser)
         return (
             <div className="nav-container">
-                {/* <Link to='/'><img className="logo-nav" src="https://i.imgur.com/sWeO4J0.png" alt="shoes"/></Link> */}
                 <ul className="nav-flex">
-                    {/* <li id="list1" className="nav-list"><Link to='/shoes'>//Kicks</Link></li>
-                <li id="list2" className="nav-list"><Link to='/profile'>//Add To Collection</Link></li> */}
                     {
                         this.props.currentUser.username
                             ? (

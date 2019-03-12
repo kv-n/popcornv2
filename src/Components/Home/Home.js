@@ -10,6 +10,9 @@ import Spinner from '../Spinner/Spinner';
 import './Home.css';
 
 class Home extends Component {
+
+
+
   state = {
     movies: [],
     heroImage: null,
@@ -46,8 +49,8 @@ class Home extends Component {
   componentWillUnmount() {
     document.removeEventListener('scroll', this.trackScrolling);
   }
-  
-  
+
+
 
   searchItems = (searchTerm) => {
     let endpoint = '';
@@ -97,52 +100,46 @@ class Home extends Component {
           sessionStorage.setItem('Home', JSON.stringify(this.state))
         }
       })
-    } catch(err) {
+    } catch (err) {
       console.log(err)
     }
-}
+  }
 
 
-render() {
-  // ES6 Destructuring the state
-  const { movies, heroImage, loading, currentPage, totalPages, searchTerm } = this.state;
+  render() {
+    // ES6 Destructuring the state
+    const { movies, heroImage, loading, currentPage, totalPages, searchTerm } = this.state;
 
-  return (
-    <div className="rmdb-home">
-      {/* if it exists it will render heroimage and if not it will return null */}
-      {heroImage ?
-        <div>
-          <HeroImage
-            image={`${IMAGE_BASE_URL}${BACKDROP_SIZE}${heroImage.backdrop_path}`}
-            title={heroImage.original_title}
-            text={heroImage.overview}
-          />
-          <SearchBar callback={this.searchItems} />
-        </div> : null}
-      <div className="rmdb-home-grid">
-        <Grid header={searchTerm ? 'Search Result' : 'Popular Movies'} loading={loading}>
-          {movies.map((element, i) => (
-            <MovieThumb
-              key={i}
-              clickable={true}
-              image={element.poster_path ? `${IMAGE_BASE_URL}${POSTER_SIZE}${element.poster_path}` : './images/no_image.jpg'}
-              movieId={element.id}
-              movieName={element.original_title}
+    return (
+      <div className="rmdb-home">
+        {/* if it exists it will render heroimage and if not it will return null */}
+        {heroImage ?
+          <div>
+            <HeroImage
+              image={`${IMAGE_BASE_URL}${BACKDROP_SIZE}${heroImage.backdrop_path}`}
+              title={heroImage.original_title}
+              text={heroImage.overview}
             />
-          ))}
-        </Grid>
-        {loading ? <Spinner /> : null}
-        {(currentPage <= totalPages && !loading) ? <LoadMoreBtn text="Load More" onClick={this.loadMoreItems} /> : null }
-
-
-
-
-
-
+            <SearchBar callback={this.searchItems} />
+          </div> : null}
+        <div className="rmdb-home-grid">
+          <Grid header={searchTerm ? 'Search Result' : 'Popular Movies'} loading={loading}>
+            {movies.map((element, i) => (
+              <MovieThumb
+                key={i}
+                clickable={true}
+                image={element.poster_path ? `${IMAGE_BASE_URL}${POSTER_SIZE}${element.poster_path}` : './images/no_image.jpg'}
+                movieId={element.id}
+                movieName={element.original_title}
+              />
+            ))}
+          </Grid>
+          {loading ? <Spinner /> : null}
+          {(currentPage <= totalPages && !loading) ? <LoadMoreBtn text="Load More" onClick={this.loadMoreItems} /> : null}
+        </div>
       </div>
-    </div>
-  )
-}
+    )
+  }
 }
 
 export default Home;

@@ -34,7 +34,6 @@ class Login extends Component {
       auth
         .signInWithEmailAndPassword(this.state.email, this.state.password)
         .then(signedInUser => {
-          console.log(signedInUser)
           //return a promise
           doGetUser(signedInUser.user.uid)
             .then(snapShot => {
@@ -42,7 +41,7 @@ class Login extends Component {
               //if multiple docs.map(d => d.data())
               // snapShot.docs.map(d => console.log(Object.assign(d.data(),{id:d.id})))
               this.props.doSetCurrentUser(snapShot.data())
-              return this.props.history.push('/movies')
+              this.props.history.push('/movies')
             })
         })
         .catch(err => {

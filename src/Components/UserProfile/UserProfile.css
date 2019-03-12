@@ -41,7 +41,7 @@
 
 
 .grid-container > div {
-  background-color: rgba(0, 0, 0, 0.829);
+  /* background-color: rgba(0, 0, 0, 0.829); */
   text-align: center;
   padding: 20px 0;
 }
