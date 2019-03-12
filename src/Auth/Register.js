@@ -12,6 +12,7 @@ import {
   Icon
 } from "semantic-ui-react";
 import { Link, withRouter } from "react-router-dom";
+import './Register.css'
 
 class Register extends Component {
   state = {
@@ -124,6 +125,7 @@ class Register extends Component {
     } = this.state;
 
     return (
+      <div className="register-container">
       <Grid textAlign="center" verticalAlign="middle" className="app">
         <Grid.Column style={{ maxWidth: 450 }}>
           <Header as="h2" icon color="black" textAlign="center">
@@ -197,6 +199,7 @@ class Register extends Component {
           </Message>
         </Grid.Column>
       </Grid>
+      </div>
     );
   }
 }

@@ -57,6 +57,10 @@ class App extends Component {
           doLogOut={this.doLogOut}
         />
         <Switch>
+`         <Route exact path='/' component={() => this.state.currentUser.id
+            ? <Home doLogOut={this.doLogout} /> 
+            : <Login doSetCurrentUser={(user) => this.setState({ currentUser: user })} />
+          } />
           <Route exact path="/movies" component={() => <Home doLogOut={this.doLogout} />} />
           <Route path="/login" component={() => <Login doSetCurrentUser={(user) => this.setState({ currentUser: user })} />} />
           <Route path='/register' component={() => <Register />} />
