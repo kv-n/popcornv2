@@ -50,7 +50,7 @@ class App extends Component {
 
   render() {
     return (
-      <div>
+      <div >
         <Nav
           doSetCurrentUser={(user) => this.setState({ currentUser: user })}
           currentUser={this.state.currentUser}

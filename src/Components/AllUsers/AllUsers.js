@@ -25,7 +25,7 @@ class AllUsers extends Component {
 
     render() {
         return (
-            <div>
+            <div className="main-container">
                 <div>
                     <h1>Find a Friend</h1>
                 </div>

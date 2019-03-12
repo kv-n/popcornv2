@@ -11,6 +11,7 @@ import {
   Icon
 } from "semantic-ui-react";
 import { Link, withRouter } from "react-router-dom";
+import './Login.css'
 
 class Login extends Component {
   state = {
@@ -66,6 +67,7 @@ class Login extends Component {
     const { email, password, errors, loading } = this.state;
 
     return (
+      <div className="login-container">
       <Grid textAlign="center" verticalAlign="middle" className="app">
         <Grid.Column style={{ maxWidth: 450 }}>
           <Header as="h1" icon color="violet" textAlign="center">
@@ -120,6 +122,7 @@ class Login extends Component {
           </Message>
         </Grid.Column>
       </Grid>
+      </div>
     );
   }
 }

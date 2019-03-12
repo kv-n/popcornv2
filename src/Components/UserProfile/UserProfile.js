@@ -91,13 +91,6 @@ class UserProfile extends Component {
         const isUser = this.props.currentUser.id === this.props.match.params.id
         // const profilePic = this.props.currentUser.fileRef
         return (
-            <div className="grid">
-                <div>
-                    <input type='file' onChange={this.addProfilePicture} />
-                </div>
-
-
-
                 <div className="grid-container">
                     <div className="item1">
                         <h2 header={'Want to See'}>Movies You Want To See:</h2>
@@ -118,7 +111,11 @@ class UserProfile extends Component {
                     </div>
 
                     <div className="item2">
+                    <div className="grid">
                         <h2>Friends</h2>
+                        <div>
+                    <input type='file' onChange={this.addProfilePicture} />
+                </div>
                         {this.state.friends.map((f, i) => (
                             <div className="friends-list" key={i}>
                                 {/* <Link to={`/profile/${f.id}`}>{f.username}</Link> */}
