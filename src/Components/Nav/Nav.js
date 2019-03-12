@@ -19,16 +19,15 @@ class Nav extends Component {
                                     <li id='list3' className="nav-list"><Link to='/all-users'>Find a Friend</Link></li>
                                     <li onClick={() => this.props.doLogOut()} id="list3" className="nav-list">Logout</li>
                                 </div>
-                            )
+                              )
                             :
-                            (
+                              (
                                 <div className="ternary-nav">
                                     <li id="list1" className="nav-list"><Link to='/movies'>Movies</Link></li>
                                     <li id="list3" className="nav-list"><Link to='/login'>Login</Link></li>
                                     <li id="list4" className="nav-list"><Link to='/register'>Register</Link></li>
                                 </div>
-                            )
-
+                              )
                     }
                 </ul>
             </div>

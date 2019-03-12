@@ -13,14 +13,12 @@ class ProfileCard extends Component {
 
   render(){
     const { username } = this.props.friend
-    console.log(this.props)
-    console.log('hello')
     return(
       <div className='profile--card'>
     <Card>
       <Card.Content>
         <Image floated='right' size='mini' src={this.props.friend.fileRef} />
-        <Card.Header><Link to={`/profile/${this.props.friend.uid}`}>{username}</Link> </Card.Header>
+        <Card.Header><Link to={`/profile/${this.props.friend.linkToFriendId}`}>{username}</Link> </Card.Header>
         {/* <Card.Meta></Card.Meta> */}
         <Card.Description> 
             {this.props.isUser

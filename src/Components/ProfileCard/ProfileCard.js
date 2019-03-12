@@ -7,7 +7,6 @@ class ProfileCard extends Component {
   componentDidMount() {
     if (this.props.currentUser.id === this.props.friend.uid) {
       console.log('user', this.props.currentUser.id, 'friend', this.props.friend.uid);
-      console.log(true);
     }
     
   }

@@ -33,13 +33,14 @@ class Movie extends Component {
     let endpoint = `${API_URL}movie/${movieId}?api_key=${API_KEY}&language=en-US`;
     this.fetchItems(endpoint);
 
-    this.props.currentUser.id && doGetAllUserMovies(this.props.currentUser.id)
+    this.props.currentUser.id ? doGetAllUserMovies(this.props.currentUser.id)
       .then(snapShot => {
         this.setState({
           userMovies: snapShot.docs.map(m => Object.assign(m.data(), { uid: m.id })),
         })
         this.isClicked()
       })
+      : this.setState({loading: false})
   }
 
   toWatchList = () => {

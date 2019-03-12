@@ -37,7 +37,7 @@ class UserProfile extends Component {
                             doGetUser(f.data().id)
                                 //asigning the data, uid to the friend after getting it by the id
                                 .then(d =>
-                                    this.setState({ friends: [...this.state.friends, Object.assign(d.data(), { uid: f.id })] })
+                                    this.setState({ friends: [...this.state.friends, Object.assign(d.data(), { uid: f.id, linkToFriendId: f.data().id })] })
                                 )
                         })
                         this.setState({
@@ -94,7 +94,6 @@ class UserProfile extends Component {
             <div className="grid">
                 <div>
                     <input type='file' onChange={this.addProfilePicture} />
-                    {/* <img src={profilePic} /> */}
                 </div>
 
 
@@ -129,7 +128,6 @@ class UserProfile extends Component {
                                     deleteFriend={this.deleteFriend}
                                     friendId={f.uid}
                                 />
-                                {/* <Modal isUser={isUser} deleteFriend={this.deleteFriend} friendId={f.uid} /> */}
 
                             </div>
                         ))}

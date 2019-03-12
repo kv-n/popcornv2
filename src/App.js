@@ -16,16 +16,28 @@ import UserProfile from './Components/UserProfile/UserProfile'
 import AllUsers from './Components/AllUsers/AllUsers'
 
 class App extends Component {
+  _isMounted = false
+
   state = {
-    currentUser: {}
+    currentUser: {},
   }
 
+
+
   componentDidMount() {
-    auth.onAuthStateChanged (authUser =>
+    this._isMounted = true
+    auth.onAuthStateChanged(authUser =>
       authUser &&
-      doGetUser (authUser.uid)
-        .then(currentUser =>this.setState({ currentUser: Object.assign({}, currentUser.data(), {id: currentUser.id})}))
+      doGetUser(authUser.uid)
+        .then(currentUser =>
+          this.setState({ currentUser: Object.assign({}, currentUser.data(), { id: currentUser.id }) }))
     )
+
+  }
+
+
+  componentWillUnmount() {
+    this._isMounted = false
   }
 
   doLogOut = () => {
@@ -47,11 +59,11 @@ class App extends Component {
         <Switch>
           <Route exact path="/movies" component={() => <Home doLogOut={this.doLogout} />} />
           <Route path="/login" component={() => <Login doSetCurrentUser={(user) => this.setState({ currentUser: user })} />} />
-          <Route path='/register' component={() => <Register/>} />
-          <Route path='/calendar' component={()=> <Calendar/>} />
-          <Route path='/profile/:id' component={() => <UserProfile currentUser={this.state.currentUser}/>}/>
-          <Route path="/movies/:movieId" component={() => <Movie currentUser={this.state.currentUser}/>} exact />
-          <Route path="/all-users" component={() => <AllUsers currentUser={this.state.currentUser}/>} exact />
+          <Route path='/register' component={() => <Register />} />
+          <Route path='/calendar' component={() => <Calendar />} />
+          <Route path='/profile/:id' component={() => <UserProfile currentUser={this.state.currentUser} />} />
+          <Route path="/movies/:movieId" component={() => <Movie currentUser={this.state.currentUser} />} exact />
+          <Route path="/all-users" component={() => <AllUsers currentUser={this.state.currentUser} />} exact />
         </Switch>
       </div>
     );
