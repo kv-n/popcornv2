@@ -31,7 +31,7 @@ export default class ModalExampleControlled extends Component {
         basic
         size='small'
       >
-        <Header icon='browser' content='Popcorn' />
+        <Header icon='browser' content='Filmbit' />
         <Modal.Content>
           {this.props.movieId
             ? (
@@ -42,7 +42,6 @@ export default class ModalExampleControlled extends Component {
             )
 
           }
-
         </Modal.Content>
         <Modal.Actions>
           <Button onClick={this.handleClose} inverted color='green' >

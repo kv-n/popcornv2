@@ -1,69 +1,64 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+# F I L M B I T &nbsp;
 
-In the project directory, you can run:
+App Link: https://popcorn-v2.firebaseapp.com/
 
-### `npm start`
+## APP DESCRIPTION
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+**FILMBIT is the big brother of my second app, Popcorn. In FILMBIT users can see movie info and add movies to thier watch list, users can also change their profile and add friends.
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+FILMBIT was built using React and Firestore. **
 
-### `npm test`
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
+## TECHNOLOGIES USED
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- [x] HTML
+- [x] CSS
+- [x] JavaScript
+- [x] React
+- [x] Firestore
+- [x] theMovieDB API
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## GETTING STARTED
 
-### `npm run eject`
+Log in or register to see movies that you can review!
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## NEXT STEPS
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+ 
+ 
+#### UNSOLVED PROBLEMS
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+- [ ] Showing more than 1 page of movies
+- [ ] Edit user information
 
-## Learn More
+#### FUTURE PLANS
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- [ ] Edit User Information
+- [ ] Using the calendar component, add an API and list movie titles and dates.
+- [ ] Refactor code
+- [ ] User Lists where users can add lists of movies
+- [ ] Comments
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+ 
+## SUMMARY
+For my capstone project, I wanted to continue my second project(Popcorn) and add more features. For FILMBIT, I wanted to add the ability for users to add movies and friends to their user profile. Users could also view their friends and see what movies they were watching and see their friends.
 
-### Code Splitting
+Initial step was to wire frame and see what components I needed and what pages linked to what.
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+![Image of App](https://i.imgur.com/TQMBEv9.jpg)
 
-### Analyzing the Bundle Size
+I started out linking the movieDB and rendering the movie posters in a grid.
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+![Image of RESTful Routes](https://i.imgur.com/iADbiAy.jpg)
 
-### Making a Progressive Web App
+The next step was learning how to implement user collections, sub-collections and auth with Firestore. Luckily, Mike our local instructor was an excellent resource for guidance.
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
+The most difficult aspects of this project was how quickly React started to get more complex and learning how to implement Firestore as a backend and linking the data with so many different React components. 
 
-### Advanced Configuration
+In summary, this project really helped me understand React components and props while having to learn Firestore as a backend. 
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
-# popcornv2
+I wouldn't have been able to complete this project successfully as I did, without the help of my cohort and my instructors! 
