@@ -24,7 +24,7 @@ const MovieInfo = ({ movie, toWatchList, isClicked }) => (
         <p>{movie.overview}</p>
         <h3>IMDB RATING</h3>
         <div className="info-rating">
-          <meter min="0" max="100" optimum="100" low="40" high="70" value={ movie.vote_average * 10}></meter>
+          <meter min="0" max="100" optimum="100" low="40" high="70" value={ (movie.vote_average * 10).toString()}></meter>
           <p className="info-score">{movie.vote_average}</p>
         </div> {
           

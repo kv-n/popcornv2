@@ -14,7 +14,7 @@
     background: #000000f3;
     max-height: 430px;
     animation: animateGrid 0.5s;
-    overflow: hidden;
+    /* overflow: hidden; */
   }
   
   @keyframes animateGrid {
