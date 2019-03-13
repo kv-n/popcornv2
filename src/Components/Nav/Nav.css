@@ -10,7 +10,7 @@
     z-index: 10000;
 }
 
-.nav-container a:visited {
+.nav-container a:hover{
     color: #fff; 
 }
 
