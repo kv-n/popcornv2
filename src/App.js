@@ -16,7 +16,6 @@ import UserProfile from './Components/UserProfile/UserProfile'
 import AllUsers from './Components/AllUsers/AllUsers'
 
 class App extends Component {
-  // _isMounted = false
 
   state = {
     currentUser: {}
@@ -37,11 +36,6 @@ class App extends Component {
   }
 
 
-
-  componentWillUnmount() {
-    // this._isMounted = false
-  }
-
   doLogOut = () => {
     auth.signOut()
     this.setState({
@@ -59,7 +53,7 @@ class App extends Component {
           doLogOut={this.doLogOut}
         />
         <Switch>
-`         <Route exact path='/' component={() => this.state.currentUser.id
+         <Route exact path='/' component={() => this.state.currentUser.id
             ? <Home doLogOut={this.doLogout} /> 
             : <Login doSetCurrentUser={(user) => this.setState({ currentUser: user })} />
           } />
@@ -68,8 +62,8 @@ class App extends Component {
           <Route exact path='/register' component={() => <Register />} />
           <Route exact path='/calendar' component={() => <Calendar />} />
           <Route exact path='/profile/:id' component={() => <UserProfile currentUser={this.state.currentUser} />} />
-          <Route exact path="/movies/:movieId" component={() => <Movie currentUser={this.state.currentUser} />} exact />
-          <Route exact path="/all-users" component={() => <AllUsers currentUser={this.state.currentUser} />} exact />
+          <Route exact path="/movies/:movieId" component={() => <Movie currentUser={this.state.currentUser} />} />
+          <Route exact path="/all-users" component={() => <AllUsers currentUser={this.state.currentUser} />} />
         </Switch>
       </div>
     );

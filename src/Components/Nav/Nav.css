@@ -9,11 +9,6 @@
     align-items: center;
     z-index: 10000;
 }
-/* 
-a {
-    text-decoration: none; 
-    margin: 0;
-} */
 
 .nav-container a:visited {
     color: #fff; 

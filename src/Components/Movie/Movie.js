@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { API_URL, API_KEY } from '../../config';
-// import Navigation from '../Navigation/Navigation';
 import MovieInfo from '../MovieInfo/MovieInfo';
 import { withRouter } from 'react-router-dom'
 

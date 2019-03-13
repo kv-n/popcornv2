@@ -19,7 +19,6 @@ class ProfileCard extends Component {
       <Card.Content>
         <Image floated='right' size='mini' src={this.props.friend.fileRef} />
         <Card.Header><Link to={`/profile/${this.props.friend.linkToFriendId}`}>{username}</Link> </Card.Header>
-        {/* <Card.Meta></Card.Meta> */}
         <Card.Description> 
             {this.props.isUser
             ?
@@ -38,9 +37,7 @@ class ProfileCard extends Component {
       (
         <Card.Content extra>
             <div className='ui two buttons'>
-            {/* <Button onClick={this.handleClick} basic color='green'> */}
                 <Modal isUser={this.props.isUser} deleteFriend={this.props.deleteFriend} friendId={this.props.friendId}/>
-            {/* </Button> */}
             </div>
         </Card.Content>
       )

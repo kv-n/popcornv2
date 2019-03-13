@@ -22,7 +22,6 @@ class Register extends Component {
     passwordConfirmation: "",
     errors: [],
     loading: false
-    // usersRef: firebase.database().ref("users")
   };
 
   isFormValid = () => {
@@ -75,19 +74,12 @@ class Register extends Component {
       auth
         .createUserWithEmailAndPassword(this.state.email, this.state.password)
         .then(createdUser => {
-          console.log(createdUser);
           createdUser.user
         .updateProfile({
             displayName: this.state.username
           })
         .then(() => {
-        //   this.saveUser(createdUser).then((
-        //     console.log("user saved")
-        //   ))
-          console.log(createdUser.user)
-          console.log(createdUser.user.uid, ' this is the data')
           doAddUser(createdUser.user.uid, { username: this.state.username })
-          // this.props.doSetCurrentUser(createdUser)
           return this.props.history.push('/movies')
         })
 

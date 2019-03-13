@@ -27,7 +27,6 @@ class ProfileCard extends Component {
       <Card.Content>
         <Image floated='right' size='mini' src='' />
         <Card.Header>{username}</Card.Header>
-        {/* <Card.Meta></Card.Meta> */}
         <Card.Description>
           add {username} to your <strong>friends list</strong>
         </Card.Description>

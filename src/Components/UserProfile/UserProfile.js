@@ -115,7 +115,6 @@ class UserProfile extends Component {
                         </div>
                         {this.state.friends.map((f, i) => (
                             <div className="friends-list" key={i}>
-                                {/* <Link to={`/profile/${f.id}`}>{f.username}</Link> */}
                                 <FriendsCard
                                     isUser={isUser}
                                     friend={f}
