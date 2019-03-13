@@ -11,7 +11,7 @@
   }
   
   .rmdb-grid-element {
-    background: #353535f3;
+    background: #000000f3;
     max-height: 430px;
     animation: animateGrid 0.5s;
     overflow: hidden;
@@ -39,3 +39,5 @@
       font-size:22px;
     }
   }
+
+

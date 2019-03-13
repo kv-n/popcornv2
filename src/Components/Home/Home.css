@@ -1,14 +1,17 @@
 .rmdb-home {
     margin-bottom: 100px;
+    background: black;
   }
   
   .rmdb-home-grid {
     max-width: 1280px;
     margin: 0 auto;
     padding: 0 20px;
-    
+    margin-top: 2rem;
   }
 
   /* h1 {
     color: white;
   } */
+
+  

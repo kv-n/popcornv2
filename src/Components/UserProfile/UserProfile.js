@@ -23,7 +23,6 @@ class UserProfile extends Component {
         movies: [],
         isShowing: false,
         friends: [],
-        selectedFile: null
     }
 
 
@@ -37,7 +36,7 @@ class UserProfile extends Component {
                             doGetUser(f.data().id)
                                 //asigning the data, uid to the friend after getting it by the id
                                 .then(d =>
-                                    this.setState({ friends: [...this.state.friends, Object.assign(d.data(), { uid: f.id, linkToFriendId: f.data().id })] })
+                                    this.setState({ friends: [...this.state.friends, Object.assign(d.data(), { uid: f.id, linkToFriendId: f.data().id, name: f.data() })] })
                                 )
                         })
                         this.setState({
@@ -49,6 +48,7 @@ class UserProfile extends Component {
     }
 
     addProfilePicture = (event) => {
+        //getting first
         const file = event.target.files[0]
         // selectedFile: event.target.files[0]
         doAddStoreFile(file)
@@ -56,9 +56,6 @@ class UserProfile extends Component {
                 .then(url => doUpdateUserPic(this.props.currentUser.id, (url))))
     }
 
-    fileUploadHandler = () => {
-
-    }
 
     deleteMovie = (movieId) => {
         //getting users from params.id and getting the movieId
@@ -91,31 +88,31 @@ class UserProfile extends Component {
         const isUser = this.props.currentUser.id === this.props.match.params.id
         // const profilePic = this.props.currentUser.fileRef
         return (
-                <div className="grid-container">
-                    <div className="item1">
-                        <h2 header={'Want to See'}>Movies You Want To See:</h2>
-                        <div className="movie-container">
-                            {this.state.movies.map((element, i) => (
-                                <div className="profile-movies" key={i}>
-                                    <MovieThumb
-                                        key={i}
-                                        clickable={true}
-                                        image={element.picture ? `${IMAGE_BASE_URL}${POSTER_SIZE}${element.picture}` : './images/no_image.jpg'}
-                                        movieId={element.id}
-                                        movieName={element.original_title}
-                                    />
-                                    <Modal isUser={isUser} deleteMovie={this.deleteMovie} movieId={element.uid} />
-                                </div>
-                            ))}
-                        </div>
+            <div className="grid-container">
+                <div className="item1">
+                    <h2 header={'Want to See'}>Movies You Want To See:</h2>
+                    <div className="movie-container">
+                        {this.state.movies.map((element, i) => (
+                            <div className="profile-movies" key={i}>
+                                <MovieThumb
+                                    key={i}
+                                    clickable={true}
+                                    image={element.picture ? `${IMAGE_BASE_URL}${POSTER_SIZE}${element.picture}` : './images/no_image.jpg'}
+                                    movieId={element.id}
+                                    movieName={element.original_title}
+                                />
+                                <Modal isUser={isUser} deleteMovie={this.deleteMovie} movieId={element.uid} />
+                            </div>
+                        ))}
                     </div>
+                </div>
 
-                    <div className="item2">
+                <div className="item2">
                     <div className="grid">
                         <h2>Friends</h2>
                         <div>
-                    <input type='file' onChange={this.addProfilePicture} />
-                </div>
+                            <input type='file' onChange={this.addProfilePicture} />
+                        </div>
                         {this.state.friends.map((f, i) => (
                             <div className="friends-list" key={i}>
                                 {/* <Link to={`/profile/${f.id}`}>{f.username}</Link> */}

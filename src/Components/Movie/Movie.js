@@ -78,8 +78,6 @@ class Movie extends Component {
     // ES6 Destructuring the props and state
     const { movie, actors, loading, isClicked } = this.state;
 
-    console.log(this.state.loading)
-
     return (
       <div>
         {

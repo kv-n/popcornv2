@@ -23,6 +23,10 @@ class AllUsers extends Component {
         doAddFriend(this.props.currentUser.id, { id: friendId, username: friendName })
     }
 
+    filterFriends = () =>{
+        
+    }
+
     render() {
         return (
             <div className="main-container">

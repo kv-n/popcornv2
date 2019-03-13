@@ -5,7 +5,7 @@ const userRef = db.collection('users')
 
 const storageRef = storage.ref()
 
-
+//PROFILE IMAGE UPLOAD
 
 export const doAddStoreFile = (file) =>
   storageRef
@@ -25,6 +25,7 @@ export const getUserPic = (name) =>
     .child(name)
     .getDownloadURL()
 
+//FIREBASE USER
 
 export const doAddUser = (id, user) =>
   userRef
@@ -41,15 +42,6 @@ export const doGetUser = (id) =>
 export const doGetAllUsers = () =>
   userRef
     .get()
-
-
-
-// export const doGetFriendsList =(id) =>
-//   userRef
-//     .doc(id)
-//     .collection('friends')
-//     .get()
-
 
 export const doAddFriend = (userId, friendData) =>
   userRef
@@ -90,11 +82,3 @@ export const doDeleteMovie = (userId, movieId) =>
     .collection('movies')
     .doc(movieId)
     .delete()
-
-
-  // export const doGetRefFriends = (userId, friendId)
-  //   userRef
-  //     .doc()
-  //     .get(userId)
-  //     .collection('friends')
-  //     .get(friendId)
