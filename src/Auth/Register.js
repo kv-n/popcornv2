@@ -120,8 +120,8 @@ class Register extends Component {
       <div className="register-container">
       <Grid textAlign="center" verticalAlign="middle" className="app">
         <Grid.Column style={{ maxWidth: 450 }}>
-          <Header as="h2" icon color="black" textAlign="center">
-            <Icon name="group" color="black" />
+          <Header as="h2" icon color="violet" textAlign="center">
+            <Icon name="group" color="violet" />
             Register for Popcorn
           </Header>
           <Form onSubmit={this.handleSubmit} size="large">
@@ -172,7 +172,7 @@ class Register extends Component {
               <Button
                 disabled={loading}
                 className={loading ? "loading" : ""}
-                color="black"
+                color="violet"
                 fluid
                 size="large"
               >

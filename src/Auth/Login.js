@@ -64,60 +64,60 @@ class Login extends Component {
 
     return (
       <div className="login-container">
-      <Grid textAlign="center" verticalAlign="middle" className="app">
-        <Grid.Column style={{ maxWidth: 450 }}>
-          <Header as="h1" icon color="violet" textAlign="center">
-            <Icon name="code branch" color="violet" />
-            Login to Popcorn
+        <Grid textAlign="center" verticalAlign="middle" className="app">
+          <Grid.Column style={{ maxWidth: 450 }}>
+            <Header as="h1" icon color="violet" textAlign="center">
+              <Icon name="tv" color="violet" />
+              Login to Popcorn
           </Header>
-          <Form onSubmit={this.handleSubmit} size="large">
-            <Segment stacked>
-              <Form.Input
-                fluid
-                name="email"
-                icon="mail"
-                iconPosition="left"
-                placeholder="Email Address"
-                onChange={this.handleChange}
-                value={email}
-                className={this.handleInputError(errors, "email")}
-                type="email"
-              />
+            <Form onSubmit={this.handleSubmit} size="large">
+              <Segment stacked>
+                <Form.Input
+                  fluid
+                  name="email"
+                  icon="mail"
+                  iconPosition="left"
+                  placeholder="Email Address"
+                  onChange={this.handleChange}
+                  value={email}
+                  className={this.handleInputError(errors, "email")}
+                  type="email"
+                />
 
-              <Form.Input
-                fluid
-                name="password"
-                icon="lock"
-                iconPosition="left"
-                placeholder="Password"
-                onChange={this.handleChange}
-                value={password}
-                className={this.handleInputError(errors, "password")}
-                type="password"
-              />
+                <Form.Input
+                  fluid
+                  name="password"
+                  icon="lock"
+                  iconPosition="left"
+                  placeholder="Password"
+                  onChange={this.handleChange}
+                  value={password}
+                  className={this.handleInputError(errors, "password")}
+                  type="password"
+                />
 
-              <Button
-                disabled={loading}
-                className={loading ? "loading" : ""}
-                color="violet"
-                fluid
-                size="large"
-              >
-                Submit
+                <Button
+                  disabled={loading}
+                  className={loading ? "loading" : ""}
+                  color="violet"
+                  fluid
+                  size="large"
+                >
+                  Submit
               </Button>
-            </Segment>
-          </Form>
-          {errors.length > 0 && (
-            <Message error>
-              <h3>Error</h3>
-              {this.displayErrors(errors)}
+              </Segment>
+            </Form>
+            {errors.length > 0 && (
+              <Message error>
+                <h3>Error</h3>
+                {this.displayErrors(errors)}
+              </Message>
+            )}
+            <Message>
+              Don't have an account? <Link to="/register">Register</Link>
             </Message>
-          )}
-          <Message>
-            Don't have an account? <Link to="/register">Register</Link>
-          </Message>
-        </Grid.Column>
-      </Grid>
+          </Grid.Column>
+        </Grid>
       </div>
     );
   }

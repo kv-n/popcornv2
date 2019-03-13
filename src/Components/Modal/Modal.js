@@ -24,7 +24,7 @@ export default class ModalExampleControlled extends Component {
   render() {
     return (
       <Modal
-        trigger={<Button className={this.props.isUser ? 'show' : 'hide'} onClick={this.handleOpen}>Delete</Button>}
+        trigger={<Button inverted className={this.props.isUser ? 'show' : 'hide'} inverted color='red' onClick={this.handleOpen}>Delete</Button>}
         open={this.state.modalOpen}
         onClose={this.modalHandler}
         close={!this.state.ModalOpen}

@@ -3,6 +3,7 @@ import { IMAGE_BASE_URL, POSTER_SIZE, BACKDROP_SIZE } from '../../config';
 import PropTypes from 'prop-types';
 import MovieThumb from '../MovieThumb/MovieThumb';
 import './MovieInfo.css';
+import { Button } from 'semantic-ui-react'
 
 const MovieInfo = ({ movie, toWatchList, isClicked }) => (
 
@@ -24,13 +25,19 @@ const MovieInfo = ({ movie, toWatchList, isClicked }) => (
         <p>{movie.overview}</p>
         <h3>IMDB RATING</h3>
         <div className="info-rating">
-          <meter min="0" max="100" optimum="100" low="40" high="70" value={ (movie.vote_average * 10).toString()}></meter>
+          <meter min="0" max="100" optimum="100" low="40" high="70" value={(movie.vote_average * 10).toString()}></meter>
           <p className="info-score">{movie.vote_average}</p>
         </div> {
-          
-          !isClicked && <button onClick={toWatchList}>ADD THIS</button>
+
+          !isClicked &&
+          <Button
+            onClick={toWatchList}
+            color='green'
+            icon='star'
+            content='Add'
+          />
         }
-          
+
       </div>
     </div>
   </div>

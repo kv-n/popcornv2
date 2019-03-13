@@ -101,7 +101,10 @@ class UserProfile extends Component {
                                     movieId={element.id}
                                     movieName={element.original_title}
                                 />
-                                <Modal isUser={isUser} deleteMovie={this.deleteMovie} movieId={element.uid} />
+                                <Modal 
+                                    isUser={isUser} 
+                                    deleteMovie={this.deleteMovie} 
+                                    movieId={element.uid} />
                             </div>
                         ))}
                     </div>
