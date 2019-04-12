@@ -8,9 +8,12 @@ import Actor from '../Actor/Actor';
 import Spinner from '../Spinner/Spinner';
 import './Movie.css';
 
-
-
-import { doAddMovieToWatchList, doGetAllUserMovies } from '../../Firebase/Users'
+import { 
+  doAddMovieToWatchList, 
+  doGetAllUserMovies,
+  doRemoveFromWatchList,
+  addMovie
+} from '../../Firebase/Users'
 
 class Movie extends Component {
   state = {
@@ -20,11 +23,12 @@ class Movie extends Component {
     userMovies: [],
     movies: [],
     loading: true,
+    buttonLoading: false,
     isClicked: true
   }
 
   isClicked = () =>
-    this.setState({ isClicked: this.state.userMovies.some(m => m.id === this.state.movie.id), loading: false })
+    this.setState({ isClicked: this.state.userMovies.some(m => m.id === parseInt(this.props.match.params.movieId)), loading: false })
 
   componentDidMount() {
     // ES6 destructuring the props
@@ -33,9 +37,9 @@ class Movie extends Component {
     this.fetchItems(endpoint);
 
     this.props.currentUser.id ? doGetAllUserMovies(this.props.currentUser.id)
-      .then(snapShot => {
+      .then(async snapShot => {
         this.setState({
-          userMovies: snapShot.docs.map(m => Object.assign(m.data(), { uid: m.id })),
+          userMovies: await snapShot.docs.map(m => Object.assign(m.data(), { uid: m.id })),
         })
         this.isClicked()
       })
@@ -43,14 +47,22 @@ class Movie extends Component {
   }
 
   toWatchList = () => {
+    this.setState({buttonLoading: true})
     const movie = {
       id: this.state.movie.id,
       title: this.state.movie.original_title,
       picture: this.state.movie.poster_path,
       toWatch: true
     }
-    doAddMovieToWatchList(this.props.currentUser.id, movie)
-    this.setState({ isClicked: true })
+    // doAddMovieToWatchList(this.props.currentUser.id, movie)
+    //   .then(() => this.setState({buttonLoading: false, isClicked: true}))
+    addMovie(movie)
+  }
+
+  removeFromWatchList = () => {
+    this.setState({ buttonLoading: true })
+    doRemoveFromWatchList(this.props.currentUser.id, parseInt(this.props.match.params.movieId))
+      .then(() => this.setState({buttonLoading: false, isClicked: false}))
   }
 
 
@@ -75,14 +87,29 @@ class Movie extends Component {
 
   render() {
     // ES6 Destructuring the props and state
-    const { movie, actors, loading, isClicked } = this.state;
+    const { 
+      movie, 
+      actors, 
+      loading, 
+      isClicked,
+      buttonLoading
+    } = this.state;
 
     return (
       <div>
         {
           !loading &&
           <div className="rmdb-movie">
-            {movie ? <div><MovieInfo isClicked={isClicked} toWatchList={this.toWatchList} movie={movie} /></div>
+            {movie 
+              ? <div>
+                  <MovieInfo 
+                    isClicked={isClicked} 
+                    toWatchList={this.toWatchList} 
+                    movie={movie}
+                    removeFromWatchList={this.removeFromWatchList}
+                    buttonLoading={buttonLoading}
+                  />
+                </div>
               : null}
             {actors ?
               <div className="rmdb-movie-grid">

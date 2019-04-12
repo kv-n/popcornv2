@@ -89,6 +89,10 @@
   color: #fff;
 }
 
+.faded {
+  opacity: .03;
+}
+
 meter::-webkit-meter-bar {
   background: #FFF;
   width:200px;

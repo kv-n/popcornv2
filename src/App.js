@@ -59,8 +59,8 @@ class App extends Component {
           } />
           <Route exact path="/movies" component={() => <Home doLogOut={this.doLogout} />} />
           <Route exact path="/login" component={() => <Login doSetCurrentUser={(user) => this.setState({ currentUser: user })} />} />
-          <Route exact path='/register' component={() => <Register />} />
-          <Route exact path='/calendar' component={() => <Calendar />} />
+          <Route exact path='/register' component={() => <Register doSetCurrentUser={(user) => this.setState({ currentUser: user })} />} />
+          <Route exact path='/calendar' component={() => <Calendar currentUser={this.state.currentUser} />} />
           <Route exact path='/profile/:id' component={() => <UserProfile currentUser={this.state.currentUser} />} />
           <Route exact path="/movies/:movieId" component={() => <Movie currentUser={this.state.currentUser} />} />
           <Route exact path="/all-users" component={() => <AllUsers currentUser={this.state.currentUser} />} />

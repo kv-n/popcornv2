@@ -1,5 +1,4 @@
 import React, { Component} from "react";
-// import firebase from '../Firebase'
 import { auth } from '../Firebase/Firebase'
 import { doAddUser } from '../Firebase/Users'
 import {
@@ -80,12 +79,14 @@ class Register extends Component {
           })
         .then(() => {
           doAddUser(createdUser.user.uid, { username: this.state.username })
-          return this.props.history.push('/movies')
+            .then(snapShot => {
+              this.props.doSetCurrentUser(snapShot.data())
+              return this.props.history.push('/movies')
+            })
         })
 
         })
         .catch(err => {
-          console.error(err);
           this.setState({
             errors: this.state.errors.concat(err),
             loading: false
