@@ -11,8 +11,6 @@ import './Home.css';
 
 class Home extends Component {
 
-
-
   state = {
     movies: [],
     heroImage: null,
@@ -30,7 +28,6 @@ class Home extends Component {
     const wrappedElement = document.getElementsByClassName('rmdb-home')[0];
     if (this.isBottom(wrappedElement)) {
       this.loadMoreItems()
-      // document.removeEventListener('scroll', this.trackScrolling);
     }
   };
 

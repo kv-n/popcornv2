@@ -1,11 +1,21 @@
 import React, { Component } from 'react'
+import { Button, Checkbox, Form } from 'semantic-ui-react'
 import dateFns from 'date-fns'
 import './Calendar.css'
+import {
+    DateInput,
+    TimeInput,
+    DateTimeInput,
+    DatesRangeInput
+  } from 'semantic-ui-calendar-react';
+
+import { doCreateMovieData } from '../../Firebase/Users'
 
 class Calendar extends Component {
     state = {
         currentMonth: new Date(),
-        selectedDate: new Date()
+        selectedDate: new Date(),
+        show: false
     }
 
 
@@ -72,7 +82,7 @@ class Calendar extends Component {
                                 : dateFns.isSameDay(day, selectedDate) ? "selected" : ""
                             }`}
                         key={day}
-                        onClick={() => this.onDateClick(dateFns.parse(cloneDay))}
+                        onClick={() => this.toggleShow(dateFns.parse(cloneDay))}
                     >
                         <span className="number">{formattedDate}</span>
                         <span className="bg">{formattedDate}</span>
@@ -90,11 +100,21 @@ class Calendar extends Component {
         return <div className="body">{rows}</div>;
     }
 
-    onDateClick = day => {
+    // onDateClick = day => {
+    //     console.log(day)
+    //     this.setState({
+    //       show: true,
+          
+    //     });
+    //   };
+
+    toggleShow = day => {
         this.setState({
-          selectedDate: day
-        });
-      };
+            selectedDate: day,
+            show: !this.state.show
+        })
+    }
+
 
     nextMonth = () => {
         this.setState({
@@ -111,12 +131,93 @@ class Calendar extends Component {
     render() {
         return (
             <div className="calendar">
-                {this.renderHeader()}
-                {this.renderDays()}
-                {this.renderCells()}
+                {
+                    !this.state.show
+                        ? <div>
+                            {this.renderHeader()}
+                            {this.renderDays()}
+                            {this.renderCells()}
+                        </div>
+                        : <AddMovie 
+                            day={this.state.selectedDate} 
+                            toggleShow={this.toggleShow} 
+                            toggleShow={this.toggleShow}
+                            currentMonth={this.state.currentMonth}
+                            currentUserId={this.props.currentUser.id}
+                        />
+                }
             </div>
         )
     }
 }
+
+class AddMovie extends Component {
+    state = {
+        title: '',
+        time: '',
+        place: ''
+    }
+
+    createMovieDate = () => {
+        doCreateMovieData(this.props.currentUserId, Object.assign({
+            date: `${dateFns.format(this.props.currentMonth, "MMMM")} ${this.props.day.getDate()
+        }`},this.state))
+        this.props.toggleShow(this.props.day)
+    }
+        
+
+
+    handleChange = (event, {name, value}) => {
+        if (this.state.hasOwnProperty(name)) {
+          this.setState({ [name]: value });
+        }
+      }
+    doHandleInput = e =>
+        this.setState({
+            [e.target.name]: e.target.value
+        }) 
+    
+    render() {
+        // console.log(this.props)
+        const { day } = this.props
+        return (
+            <div className='calendar'>
+                pick a movie
+                <button onClick={() => this.props.toggleShow(this.props.day)}>close</button>
+                {/* <form className='calendar-form'>
+                    <input type='text' onChange={e => this.doHandleInput(e)} name='title' value={this.state.title}></input>
+                    <input type='text' onChange={e => this.doHandleInput(e)} name='place' value={this.state.title}></input>
+                    <input type='text' onChange={e => this.doHandleInput(e)} name='address' value={this.state.title}></input>
+                    <input type='date' onChange={e => this.doHandleInput(e)} name='data' value={t.toString()} 
+                    ></input>
+                </form> */}
+                <h3>{dateFns.format(this.props.currentMonth, "MMMM")} {day.getDate()}</h3>
+                <Form onSubmit={this.createMovieDate}>
+                    <Form.Field>
+                        <label>Title</label>
+                        <input onChange={e => this.doHandleInput(e)} name='title' placeholder='Title' />
+                    </Form.Field>
+                    <Form.Field>
+                        <label>Place</label>
+                        <input onChange={e => this.doHandleInput(e)} name='place' value={this.state.place} placeholder='Place' />
+                    </Form.Field>
+                    <Form.Field>
+                        <label>Time</label>
+                        <TimeInput
+                            name="time"
+                            placeholder="Time"
+                            value={this.state.time}
+                            iconPosition="left"
+                            onChange={this.handleChange}
+                            closable={true}
+                            />
+                    </Form.Field>
+                    <Button type='submit'>Submit</Button>
+                </Form>
+            </div>
+        )
+    }
+}
+
 
 export default Calendar

@@ -32,7 +32,7 @@ class UserProfile extends Component {
             .then(userSnapShot =>
                 doGetAllFriends(this.props.match.params.id)
                     .then(async friendSnapShot => {
-                        const friends = friendSnapShot.docs.map(f => {
+                        friendSnapShot.docs.map(f => {
                             doGetUser(f.data().id)
                                 //asigning the data, uid to the friend after getting it by the id
                                 .then(d =>
